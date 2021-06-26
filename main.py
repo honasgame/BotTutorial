@@ -41,10 +41,14 @@ def build_joke():
   complete_joke = actual_joke
   return complete_joke
 
+
+
+
 @client.event
 async def on_ready():
+  await client.change_presence(activity = discord.Game('Use $help to get the list of commands'))
   print('Bot is ready! Command me')
-
+  
 @client.event
 async def on_message(message):
   if message.author == client.user:
@@ -54,10 +58,11 @@ async def on_message(message):
     "$hello": "Hello, this is the wild bot",
     "$howareyou": "I am fine thank you",
     "$favgames": "My three favourite games are cricket, football and badminton",
-    "$help": "Available commands: [$hello: conversation, $howareyou: conversation, $favgames : conversation, $inspire_me: random inspirational quotes,$inspire_me_today: inspirational quote of the today,$jokes:jokes]",
+    "$help": "Available commands: [$hello: conversation, $howareyou: conversation, $favgames : conversation, $inspire_me: random inspirational quotes,$inspire_me_today: inspirational quote of the today,$joke:joke]",
     "$inspire_me": build_quote(),
     "$inspire_me_today":build_quote_today(),
-    "$jokes":build_joke()
+    "$joke":build_joke() ,
+   
   }
 
   if msg in request_response:
