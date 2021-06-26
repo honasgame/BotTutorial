@@ -29,6 +29,18 @@ def build_quote_today():
   complete_quote_2 = quote_2 + ' -' + author_2
   return complete_quote_2
 
+def get_joke():
+  url = 'https://api.chucknorris.io/jokes/random'
+  response = requests.get(url).json()
+  return response
+
+def build_joke():
+  api_responce_3 = get_joke()
+  
+  actual_joke = api_responce_3['value']
+  complete_joke = actual_joke
+  return complete_joke
+
 @client.event
 async def on_ready():
   print('Bot is ready! Command me')
@@ -42,9 +54,10 @@ async def on_message(message):
     "$hello": "Hello, this is the wild bot",
     "$howareyou": "I am fine thank you",
     "$favgames": "My three favourite games are cricket, football and badminton",
-    "$help": "Available commands: [$hello: conversation, $howareyou: conversation, $favgames : conversation, $inspire_me: random inspirational quotes,$inspire_me_today: inspirational quote of the today]",
+    "$help": "Available commands: [$hello: conversation, $howareyou: conversation, $favgames : conversation, $inspire_me: random inspirational quotes,$inspire_me_today: inspirational quote of the today,$jokes:jokes]",
     "$inspire_me": build_quote(),
-    "$inspire_me_today":build_quote_today()
+    "$inspire_me_today":build_quote_today(),
+    "$jokes":build_joke()
   }
 
   if msg in request_response:
