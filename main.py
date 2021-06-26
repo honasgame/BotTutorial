@@ -5,6 +5,7 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
+  await client.change_presence(activity = discord.Game('Use $help to get a list of commands'))
   print('Bot is ready! Command me')
 
 @client.event
