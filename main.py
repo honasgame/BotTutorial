@@ -46,7 +46,7 @@ def build_joke():
 
 @client.event
 async def on_ready():
-  await client.change_presence(activity = discord.Game('Use $help to get the list of commands'))
+  await client.change_presence(activity = discord.Game('?Use $help to get the list of commands'))
   print('Bot is ready! Command me')
   
 @client.event
