@@ -19,23 +19,9 @@ async def on_message(message):
     "$favgames": "My three favourite games are cricket, football and badminton",
     "$help": "Available commands: [$hello, $howareyou, $favgames]" 
   }
-  
-  if msg.startswith('$hello'):
 
-    await message.channel.send(request_response['$hello'])
-
-  if msg.startswith('$howareyou'):
-   
-    await message.channel.send(request_response['$howareyou'])
-
-  if msg.startswith('$favgames'):
- 
-    await message.channel.send(request_response['$favgames'])
-  if msg.startswith('$help'):
-
-    await message.channel.send(request_response['$help'])
-
-
+  if request_response[msg]:
+    await message.channel.send(request_response[msg]) 
 
 my_secret = os.environ['TOKEN']
 client.run(my_secret)
