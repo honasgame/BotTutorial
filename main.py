@@ -30,19 +30,29 @@ def build_quote_today():
   return complete_quote_2
 
 def get_joke():
-  url = 'https://api.chucknorris.io/jokes/random'
+  url = 'https://v2.jokeapi.dev/joke/any'
   response = requests.get(url).json()
   return response
 
 def build_joke():
   api_responce_3 = get_joke()
-  
-  actual_joke = api_responce_3['value']
-  complete_joke = actual_joke
+  joke_type = api_responce_3['category']
+  actual_joke = api_responce_3['setup'] 
+  and_joke = api_responce_3['delivery']
+  complete_joke = joke_type + '-' + actual_joke + and_joke
   return complete_joke
 
+def get_joke_programming():
+  url = 'https://v2.jokeapi.dev/joke/Programming'
+  response = requests.get(url).json()
+  return response
 
-
+def build_joke_programming():
+  api_responce_4 = get_joke_programming()
+  actual_joke = api_responce_4['setup'] 
+  and_joke = api_responce_4['delivery']
+  complete_joke = actual_joke + and_joke
+  return complete_joke
 
 @client.event
 async def on_ready():
@@ -58,10 +68,11 @@ async def on_message(message):
     "$hello": "Hello, this is the wild bot",
     "$howareyou": "I am fine thank you",
     "$favgames": "My three favourite games are cricket, football and badminton",
-    "$help": "Available commands: [$hello: conversation, $howareyou: conversation, $favgames : conversation, $inspire_me: random inspirational quotes,$inspire_me_today: inspirational quote of the today,$joke:joke]",
+    "$help": "Available commands: [$hello: conversation, $howareyou: conversation, $favgames : conversation, $inspire_me: random inspirational quotes,$inspire_me_today: inspirational quote of the today,$joke:joke,$joke_programming: programming jokes]",
     "$inspire_me": build_quote(),
     "$inspire_me_today":build_quote_today(),
     "$joke":build_joke() ,
+    "$joke_programming": build_joke_programming()
    
   }
 
